@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' ./app.ts",
+    "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' ./index.ts",
     "lint": "eslint 'src/**/*.ts'"
   },
   "keywords": [],
@@ -16,11 +16,15 @@
   "dependencies": {
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "cors": "^2.8.5",
+    "mongodb": "^6.16.0",
     "mongoose": "^8.14.1",
     "moongoose": "^0.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.1",
+    "@types/cors": "^2.8.17",
+    "@types/dotenv": "^6.1.1",
     "@types/express": "^5.0.1",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^22.15.3",

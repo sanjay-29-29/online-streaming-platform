@@ -1,17 +1,15 @@
-
 import mongoose from 'mongoose';
 
-const connectToDataBase =  async() : Promise<void> => {
+const mongoUrl =  `mongodb+srv://sathiyaseelan0712:8bqDvkXlGeyg0C8d@cluster0.ol4kf5m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+
+const connectToDataBase = async (): Promise<void> => {
     try {
-        if (!process.env.MONGO_URL) {
-            throw new Error("MONGO_URL is not defined in the environment variables");
-        }
-        await mongoose.connect(process.env.MONGO_URL);
-        console.log("Mongo db connected");
+        await mongoose.connect(mongoUrl);
+        console.log("MongoDB connected");
     } catch (error) {
-        console.log(error);
-        process.exit(1);
+        console.error("Error connecting to MongoDB:", error);
+        process.exit(1); // Exit with failure
     }
-}
+};
 
 export default connectToDataBase;

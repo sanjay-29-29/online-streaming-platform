@@ -14,4 +14,4 @@ const userSchema = new Schema<IUserMongo>(
     }
 )
 
-export const userModel = model<IUserMongo>(SCHEMA_CONST.USER, userSchema)
+export const UserModel = model<IUserMongo>(SCHEMA_CONST.USER, userSchema)
