@@ -5,7 +5,6 @@ export default function BrowsePage() {
   return (
     <>
       <HeroSection {...titleData} />
-
       <div className="ml-4 flex flex-col relative sm:bottom-16">
         <div className="sm:text-5xl text-3xl font-bold sm:mx-6 z-40">
           Watch Now
@@ -14,11 +13,11 @@ export default function BrowsePage() {
           {data.movies.map((ele) => (
             <div
               key={ele.title}
-              className="flex-shrink-0 hover:scale-110 transition-transform duration-300 m-4"
+              className="hover:scale-110 transition-transform duration-300 m-4 flex-shrink-0"
             >
               <img
                 src={ele.poster}
-                className="rounded-lg object-cover sm:w-96 w-52"
+                className="rounded-lg object-fit sm:w-96 w-52"
                 alt={ele.title}
               />
             </div>
