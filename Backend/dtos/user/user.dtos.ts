@@ -2,7 +2,8 @@ import { IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import {
   ICreateUser,
   IGetUser,
-  IUpdateUser
+  IUpdateUser,
+  IUserIdentity
 } from '../../interface/user/user.interface';
 import { Expose, Transform, Type } from 'class-transformer';
 import { Types } from 'mongoose';
@@ -12,6 +13,22 @@ const toObjectId = (value: string | Types.ObjectId): Types.ObjectId => {
     ? new Types.ObjectId(value)
     : new Types.ObjectId();
 };
+
+export class UserIdentityDTO implements IUserIdentity{
+  @Expose()
+  @IsEmail({}, { message: 'Invalid email format' })
+  @IsNotEmpty({ message: 'Email must be required' })
+  email: string;
+
+  @Expose()
+  @IsString({ message: 'Password must be a string' })
+  @IsNotEmpty({ message: 'Password must be required' })
+  password: string;
+
+  constructor(init?: Partial<UserIdentityDTO>) {
+    Object.assign(this, init);
+  }
+}
 
 export class CreateUserDTO implements ICreateUser {
   @Expose()

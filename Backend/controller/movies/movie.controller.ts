@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-indexed-object-style */
 import { NextFunction, Request, Response } from 'express';
 import * as movieDTO from '../../dtos/movie/movie.dtos';
 import * as movieService from '../../service/movie/movie.service';

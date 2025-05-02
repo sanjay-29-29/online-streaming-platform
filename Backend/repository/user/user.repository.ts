@@ -16,3 +16,10 @@ export const updateUser = async (data : IUpdateUser)=>{
 export const getUser = async (data : IGetUser) => {
     return await UserModel.find(data._id);
 }
+
+export const getUserIdentity = async (email : string, password :string) => {
+    return await UserModel.find({
+        email: email,
+        password: password
+    });
+}

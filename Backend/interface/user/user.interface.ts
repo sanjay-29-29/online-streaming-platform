@@ -9,6 +9,11 @@ export interface IUser{
     updateAt: Date;
 }
 
+export interface IUserIdentity{
+    email: string;
+    password: string;
+}
+
 export interface ICreateUser{
     name: string;
     email: string;

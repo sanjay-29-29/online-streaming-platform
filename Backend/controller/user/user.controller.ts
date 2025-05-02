@@ -2,6 +2,15 @@ import { NextFunction, Request, Response } from 'express';
 import { CreateUserDTO, UpdateUserDTO } from '../../dtos/user/user.dtos';
 import { handleCreateUser } from '../../service/user/user.service';
 
+
+// export const loginUser = async (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ) => {
+ 
+// }
+
 export const createUser = async (
   req: Request,
   res: Response,
