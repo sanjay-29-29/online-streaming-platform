@@ -7,8 +7,8 @@ import { GeneralResponse } from '../../utils/response';
 
 export const handleCreateMovie = async (data: ICreateMovie) => {
   try {
-    await movieRepository.createMovie(data);
-    return new GeneralResponse(true, null, 200, 'movie created successfully');
+    const res = await movieRepository.createMovie(data);
+    return new GeneralResponse(true, res, 200, 'movie created successfully');
   } catch (error) {
     console.log(error);
   }

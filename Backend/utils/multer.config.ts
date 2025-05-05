@@ -1,15 +1,21 @@
 import multer from 'multer';
 
-const storage = multer.memoryStorage();
+const memory = multer.memoryStorage();
 
-const upload = multer({
-  storage: storage
+const disk = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/tmp/my-uploads');
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    cb(null, file.fieldname + '-' + uniqueSuffix);
+  }
 });
 
-export type MulterFiles = Record<string, Express.Multer.File[]>;
+export const localStorage = multer({
+  storage: disk
+});
 
-export interface MulterRequest extends Request {
-  files: MulterFiles;
-}
-
-export default upload;
+export const memoryStorage = multer({
+  storage: memory
+});

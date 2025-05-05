@@ -23,8 +23,7 @@ const movieSchema = new Schema<IMovieMongo>(
     },
     path: { type: SchemaTypes.String, required: false },
     artists: { type: [SchemaTypes.String], required: false },
-    director: { type: [SchemaTypes.String], required: false },
-    file_id: { type: SchemaTypes.String, required: false }
+    director: { type: [SchemaTypes.String], required: false }
   },
   {
     timestamps: true
