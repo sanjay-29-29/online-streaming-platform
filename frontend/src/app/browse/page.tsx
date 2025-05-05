@@ -10,8 +10,8 @@ export default function BrowsePage() {
   const { data, error, isLoading } = useQuery<Movie[], Error>({
     queryKey: ["movies"],
     queryFn: async () => {
-      const response = await axiosClient.get<Movie[]>("/movies");
-      return response.data!.data;
+      const response = await axiosClient.get<{ data: Movie[] }>("/movies");
+      return response.data.data;
     },
   });
 
