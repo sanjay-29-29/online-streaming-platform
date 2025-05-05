@@ -16,6 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/api', routes);
-app.use(express.static(path.join(__dirname, 'storage')));
+app.use('/api', express.static(path.join(__dirname, 'storage')));
 
 export default app;

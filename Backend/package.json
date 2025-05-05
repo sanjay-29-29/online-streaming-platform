@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' ./index.ts --ignore 'tempStorage' --ignore 'storage'",
+    "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' ./index.ts --ignore 'tempStorage' --ignore 'storage' --max-old-space-size=4076",
     "lint": "eslint 'src/**/*.ts'"
   },
   "keywords": [],
