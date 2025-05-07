@@ -5,14 +5,14 @@ import {
   IsNumber,
   IsOptional,
   IsString,
-  ValidateNested
+  ValidateNested,
 } from 'class-validator';
 import { Types } from 'mongoose';
 import {
   ICreateMovie,
   IGetMovie,
   IGetMovieByGenre,
-  IUpdateMovie
+  IUpdateMovie,
 } from '../../interface/user/movie.interface';
 
 // Helper to transform string to ObjectId
@@ -20,34 +20,31 @@ function toObjectId(value: string): Types.ObjectId {
   return new Types.ObjectId(value);
 }
 
-// Image data (single image)
-export class ImageData {
+// Create movie DTO
+class ImageData {
   @Expose()
-  @IsNotEmpty({ message: 'data is required' })
+  @IsString({ message: 'image data must be a string' })
+  @IsNotEmpty({ message: 'image data is required' })
   data: string;
 
   @Expose()
-  @IsString({ message: 'type must be a string' })
-  @IsNotEmpty({ message: 'type is required' })
+  @IsString({ message: 'image type must be a string' })
+  @IsNotEmpty({ message: 'image type is required' })
   type: string;
 }
 
-// Image object (contains cover and poster)
-export class ImageObject {
+class Image {
   @Expose()
   @ValidateNested()
   @Type(() => ImageData)
-  @IsNotEmpty({ message: 'cover is required' })
   cover: ImageData;
 
   @Expose()
   @ValidateNested()
   @Type(() => ImageData)
-  @IsNotEmpty({ message: 'poster is required' })
   poster: ImageData;
 }
 
-// Create movie DTO
 export class CreateMovie implements ICreateMovie {
   @Expose()
   @IsString({ message: 'name must be a string' })
@@ -61,9 +58,10 @@ export class CreateMovie implements ICreateMovie {
   year: number;
 
   @Expose()
-  @IsString({ message: 'category must be a string' })
-  @IsNotEmpty({ message: 'category is required' })
-  category: string;
+  @IsNumber({}, { message: 'age_rating must be a number' })
+  @IsNotEmpty({ message: 'age_rating is required' })
+  @Type(() => Number)
+  age_rating: number;
 
   @Expose()
   @IsString({ message: 'description must be a string' })
@@ -72,9 +70,33 @@ export class CreateMovie implements ICreateMovie {
 
   @Expose()
   @ValidateNested()
-  @Type(() => ImageObject)
-  @IsNotEmpty({ message: 'image is required' })
-  image: ImageObject;
+  @Type(() => Image)
+  image: Image;
+
+  @Expose()
+  @IsArray({ message: 'cast must be an array' })
+  @IsString({ each: true, message: 'each cast member must be a string' })
+  cast: string[];
+
+  @Expose()
+  @IsArray({ message: 'category must be an array' })
+  @IsString({ each: true, message: 'each category must be a string' })
+  category: string[];
+
+  @Expose()
+  @IsArray({ message: 'director must be an array' })
+  @IsString({ each: true, message: 'each director must be a string' })
+  director: string[];
+
+  @Expose()
+  @IsArray({ message: 'subtitles must be an array' })
+  @IsString({ each: true, message: 'each subtitle language must be a string' })
+  subtitles: string[];
+
+  @Expose()
+  @IsArray({ message: 'audio must be an array' })
+  @IsString({ each: true, message: 'each audio language must be a string' })
+  audio: string[];
 
   constructor(init?: Partial<CreateMovie>) {
     Object.assign(this, init);
@@ -90,8 +112,8 @@ export class UpdateMovie implements IUpdateMovie {
 
   @Expose()
   @IsOptional()
-  @IsString({ message: 'category must be a string' })
-  category?: string;
+  @IsString({ message: 'description must be a string' })
+  description?: string;
 
   @Expose()
   @IsOptional()
@@ -101,25 +123,21 @@ export class UpdateMovie implements IUpdateMovie {
 
   @Expose()
   @IsOptional()
-  @IsString({ message: 'description must be a string' })
-  description?: string;
+  @IsArray({ message: 'audio must be an array' })
+  @IsString({ each: true, message: 'each audio language must be a string' })
+  audio?: string[];
 
   @Expose()
   @IsOptional()
-  @ValidateNested()
-  @Type(() => ImageObject)
-  image?: ImageObject;
+  @IsArray({ message: 'cast must be an array' })
+  @IsString({ each: true, message: 'each cast member must be a string' })
+  cast?: string[];
 
   @Expose()
   @IsOptional()
-  @IsString({ message: 'path must be a string' })
-  path?: string;
-
-  @Expose()
-  @IsOptional()
-  @IsArray({ message: 'artists must be an array' })
-  @IsString({ each: true, message: 'each artist must be a string' })
-  artists?: string[];
+  @IsArray({ message: 'category must be an array' })
+  @IsString({ each: true, message: 'each category must be a string' })
+  category?: string[];
 
   @Expose()
   @IsOptional()
@@ -129,8 +147,9 @@ export class UpdateMovie implements IUpdateMovie {
 
   @Expose()
   @IsOptional()
-  @IsString({ message: 'file_id must be a string' })
-  file_id?: string;
+  @IsArray({ message: 'subtitles must be an array' })
+  @IsString({ each: true, message: 'each subtitle language must be a string' })
+  subtitles?: string[];
 
   @Expose()
   @Transform(({ value }) => toObjectId(value))
@@ -157,9 +176,10 @@ export class GetMovie implements IGetMovie {
 // Get movie by genre DTO
 export class GetMovieByGenre implements IGetMovieByGenre {
   @Expose()
-  @IsString({ message: 'genre must be a string' })
+  @IsArray({ message: 'genre must be an array' })
+  @IsString({ each: true, message: 'each genre must be a string' })
   @IsNotEmpty({ message: 'genre is required' })
-  genre: string;
+  genre: string[];
 
   constructor(init?: Partial<GetMovieByGenre>) {
     Object.assign(this, init);

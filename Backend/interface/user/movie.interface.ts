@@ -2,13 +2,9 @@ import { Types } from 'mongoose';
 
 export interface IMovie {
   name: string;
-  category: string;
   description: string;
+  age_rating: number;
   year: number;
-  path: string;
-  artists: string[];
-  director: string[];
-  file_id: string;
   image: {
     cover: {
       data: string;
@@ -19,13 +15,18 @@ export interface IMovie {
       type: string;
     };
   };
+  category: string[];
+  cast: string[];
+  director: string[];
+  subtitles: string[];
+  audio: string[];
 }
 
 export interface ICreateMovie {
   name: string;
   year: number;
-  category: string;
   description: string;
+  age_rating: number;
   image: {
     cover: {
       data: string;
@@ -36,12 +37,18 @@ export interface ICreateMovie {
       type: string;
     };
   };
+  cast: string[];
+  category: string[];
+  director: string[];
+  subtitles: string[];
+  audio: string[];
 }
 
 export interface IUpdateMovie {
   name?: string;
   description?: string;
   year?: number;
+  age_rating?: number;
   image?: {
     cover?: {
       data: string;
@@ -52,10 +59,12 @@ export interface IUpdateMovie {
       type: string;
     };
   };
-  path?: string;
-  artists?: string[];
+
+  audio?: string[];
+  cast?: string[];
+  category?: string[];
   director?: string[];
-  file_id?: string;
+  subtitles?: string[];
   _id: Types.ObjectId;
 }
 
@@ -64,7 +73,7 @@ export interface IGetMovie {
 }
 
 export interface IGetMovieByGenre {
-  genre: string;
+  genre: string[];
 }
 
-export interface IMovieMongo extends IMovie, Document {}
+export interface IMovieMongo extends IMovie, Document { }

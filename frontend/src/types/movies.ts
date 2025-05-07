@@ -1,10 +1,10 @@
-export interface Movie {
+export interface MovieType {
   _id: string;
   name: string;
-  year: number;
-  category: string;
   description: string;
-  images: {
+  age_rating: number;
+  year: number;
+  image: {
     cover: {
       data: string;
       type: string;
@@ -14,9 +14,9 @@ export interface Movie {
       type: string;
     };
   };
-  path?: string;
-  artists?: string[];
-  director?: string[];
-  createdAt?: Date;
-  updatedAt?: Date;
+  category: string[];
+  cast: string[];
+  director: string[];
+  subtitles: string[];
+  audio: string[];
 }

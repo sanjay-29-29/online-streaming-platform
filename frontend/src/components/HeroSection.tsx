@@ -4,29 +4,46 @@ export default function HeroSection(data: {
   description: string;
   logo: string;
 }) {
+  console.log(data.src);
   return (
     <>
-      <section className="relative h-[85vh]">
-        <div className="absolute top-0 flex flex-row mx-4">
-          <div className="text-red-800 font-bold mr-2">NETFLIX</div>
-          <div className="space-x-2 flex flex-row">
-            <div className="">Home</div>
-            <div className="">About</div>
-            <div className="">TV Shows</div>
-            <div className="">Games</div>
+      <section
+        className={`h-[80vh] flex items-center px-12  bg-[url('/bcs_title.jpg')] bg-cover bg-center z-0
+
+`}
+      >
+        <div className="absolute z-10 bg-black/50 w-full h-[80vh] inset-0"></div>
+        <div className="max-w-2xl z-20">
+          <div className="flex items-center mb-4">
+            <span className="featured-badge text-xs font-bold px-2 py-1 rounded">
+              FEATURED
+            </span>
+            <span className="ml-2 text-sm text-purple-300">
+              NEW EPISODE TODAY
+            </span>
+          </div>
+          <h1 className="text-5xl font-bold mb-4 leading-tight">
+            The Midnight Detective
+          </h1>
+          <div className="flex items-center mb-4">
+            <span className="bg-purple-900 bg-opacity-50 text-purple-300 text-xs px-2 py-1 rounded mr-3">
+              4K UHD
+            </span>
+            <span className="text-sm mr-3">2023</span>
+            <span className="text-sm mr-3">TV-MA</span>
+            <span className="text-sm">3 Seasons</span>
+          </div>
+          <p className="text-lg mb-6 opacity-90">{data.description}</p>
+          <div className="flex space-x-4">
+            <button className="watch-btn px-8 py-3 rounded-full font-bold flex items-center">
+              <i className="fas fa-play mr-2"></i> Watch Now
+            </button>
+            <button className="info-btn px-6 py-3 rounded-full font-bold flex items-center border border-gray-600">
+              <i className="fas fa-info-circle mr-2"></i> More Info
+            </button>
           </div>
         </div>
-        <img
-          src={data.src}
-          className="object-cover w-full h-full"
-          alt={data.title}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
-        <div className="absolute bottom-1/4 ml-10 z-50 flex h-full flex-col-reverse">
-          <div className="w-full my-2 font-bold max-w-1/2">{data.description}</div>
-          <img className="w-full my-2" src={data.logo} alt={data.title} />
-        </div>
-      </section>
+      </section>{" "}
     </>
   );
 }

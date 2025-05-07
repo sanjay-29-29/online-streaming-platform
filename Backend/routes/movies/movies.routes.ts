@@ -15,5 +15,7 @@ movieRouter.post(
   ]),
   movieController.createMovie
 );
+movieRouter.get('/:id', movieController.getMovieById);
+movieRouter.get('/watch/:id', (req, res, next) => { movieController.fetchMovie(req, res, next).catch(next) });
 
 export default movieRouter;

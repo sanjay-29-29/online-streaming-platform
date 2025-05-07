@@ -1,5 +1,6 @@
 import {
   ICreateMovie,
+  IGetMovie,
   IGetMovieByGenre
 } from '../../interface/user/movie.interface';
 import * as movieRepository from '../../repository/movie/movie.repository';
@@ -22,6 +23,16 @@ export const getMovieByGenre = async (data: IGetMovieByGenre) => {
     console.log(error);
   }
 };
+
+export const getMovieById = async (data: IGetMovie) => {
+  try {
+    const res = await movieRepository.getMovie(data);
+    return new GeneralResponse(true, res, 200, 'fetched data successfully');
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 export const getAllMovie = async () => {
   try {

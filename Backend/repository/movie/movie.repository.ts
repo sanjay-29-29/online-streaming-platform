@@ -18,12 +18,12 @@ export const updateMovie = async (data: IUpdateMovie) => {
 
 export const getMovieByGenre = async (data: IGetMovieByGenre) => {
   return MovieModel.find({
-    category: data.genre
+    category: { $in: data.genre }
   });
 };
 
 export const getMovie = async (data: IGetMovie) => {
-  return await MovieModel.find(data._id);
+  return await MovieModel.findOne(data._id);
 };
 
 export const getAllMovies = async () => {
