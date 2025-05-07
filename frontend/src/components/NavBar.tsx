@@ -4,7 +4,7 @@ export default function NavBar() {
     <>
       <nav className="navbar fixed top-0 w-full z-50 px-8 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-12">
-          <a href="#" className="text-3xl font-bold">
+          <a href="/browse" className="text-3xl font-bold">
             <span className="text-purple-500">Cine</span>
             <span className="text-white">Verse</span>
           </a>
