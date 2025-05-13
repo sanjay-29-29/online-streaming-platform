@@ -1,0 +1,82 @@
+/* Video Container */
+.video-container {
+  position: relative;
+  width: 100%;
+  max-height: 80vh;
+  /* Limits height to 80% of viewport */
+  background-color: #000;
+  margin: 0 auto;
+  /* Centers container */
+  overflow: hidden;
+  /* Prevents overflow */
+}
+
+/* Video Element */
+.video-container video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  /* Maintains aspect ratio */
+}
+
+/* Regular view (non-fullscreen) */
+.video-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: black;
+}
+
+/* Fullscreen Specific Styles */
+.video-wrapper:fullscreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+.video-wrapper:fullscreen .video-container {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  /* Remove height restriction in fullscreen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-wrapper:fullscreen video {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Controls in Fullscreen */
+.video-wrapper:fullscreen .controls-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Progress Bar */
+.progress-bar {
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #a855f7;
+}
